@@ -10,49 +10,63 @@ All colors MUST be HSL.
   :root {
     /* Blue and white theme for emergency app */
     --background: 0 0% 100%;
-    --foreground: 215 25% 27%;
+    --foreground: 215 28% 17%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 27%;
+    --card-foreground: 215 28% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
+    --popover-foreground: 215 28% 17%;
 
-    /* Primary blue theme */
-    --primary: 213 94% 68%;
+    /* Primary blue theme - enhanced */
+    --primary: 214 84% 56%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 213 94% 78%;
+    --primary-glow: 214 100% 70%;
+    --primary-dark: 214 100% 35%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 215 25% 27%;
+    --secondary: 210 20% 98%;
+    --secondary-foreground: 215 28% 17%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 20% 98%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 213 94% 68%;
+    --accent: 214 84% 56%;
     --accent-foreground: 0 0% 100%;
 
-    /* Emergency red for panic button */
-    --emergency: 0 84% 60%;
+    /* Emergency red for panic button - enhanced */
+    --emergency: 0 79% 63%;
     --emergency-foreground: 0 0% 100%;
-    --emergency-glow: 0 84% 70%;
+    --emergency-glow: 0 85% 75%;
+    --emergency-dark: 0 65% 45%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 213 94% 68%;
+    --border: 214 20% 90%;
+    --input: 214 20% 94%;
+    --ring: 214 84% 56%;
 
-    /* Design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(213 94% 68%), hsl(213 94% 78%));
-    --gradient-emergency: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 70%));
-    --shadow-blue: 0 10px 30px -10px hsl(213 94% 68% / 0.3);
-    --shadow-emergency: 0 10px 40px -10px hsl(0 84% 60% / 0.4);
-    --shadow-glow: 0 0 40px hsl(213 94% 78% / 0.3);
+    /* Enhanced design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(214 84% 56%) 0%, hsl(214 100% 70%) 50%, hsl(214 100% 80%) 100%);
+    --gradient-primary-subtle: linear-gradient(135deg, hsl(214 40% 96%) 0%, hsl(214 60% 98%) 100%);
+    --gradient-emergency: linear-gradient(135deg, hsl(0 79% 63%) 0%, hsl(0 85% 75%) 50%, hsl(0 90% 85%) 100%);
+    --gradient-emergency-pulse: radial-gradient(circle at center, hsl(0 79% 63% / 0.8) 0%, hsl(0 85% 75% / 0.4) 40%, transparent 70%);
+    
+    /* Sophisticated shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215 28% 17% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215 28% 17% / 0.1), 0 2px 4px -1px hsl(215 28% 17% / 0.06);
+    --shadow-lg: 0 10px 15px -3px hsl(215 28% 17% / 0.1), 0 4px 6px -2px hsl(215 28% 17% / 0.05);
+    --shadow-xl: 0 20px 25px -5px hsl(215 28% 17% / 0.1), 0 10px 10px -5px hsl(215 28% 17% / 0.04);
+    --shadow-blue: 0 20px 40px -12px hsl(214 84% 56% / 0.35);
+    --shadow-emergency: 0 20px 40px -12px hsl(0 79% 63% / 0.4);
+    --shadow-glow: 0 0 50px hsl(214 100% 70% / 0.25);
+    --shadow-emergency-glow: 0 0 80px hsl(0 85% 75% / 0.4);
+    
+    /* Smooth transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 

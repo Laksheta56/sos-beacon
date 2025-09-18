@@ -143,39 +143,46 @@ const PanicButton = () => {
   const progressWidth = isPressed ? 100 : 0;
 
   return (
-    <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+    <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-fade-in-up">
       {/* Instructions */}
-      <div className="mb-4 text-center px-4">
-        <p className="text-sm text-muted-foreground mb-1">Emergency SOS</p>
-        <p className="text-xs text-muted-foreground">Hold for 1.5 seconds to activate</p>
+      <div className="mb-6 text-center px-4">
+        <p className="text-lg font-display font-semibold text-card-foreground mb-2">
+          Emergency SOS
+        </p>
+        <p className="text-sm text-muted-foreground font-medium">
+          Hold for 1.5 seconds to activate
+        </p>
       </div>
 
-      {/* Panic Button */}
+      {/* Ambient glow effect */}
+      <div className="absolute inset-0 rounded-full animate-pulse-glow opacity-75 pointer-events-none" />
+
+      {/* Panic Button Container */}
       <div className="relative">
         {/* Progress Ring */}
         <div className="absolute inset-0 rounded-full">
-          <svg className="w-full h-full transform -rotate-90" width="120" height="120">
+          <svg className="w-full h-full transform -rotate-90" width="140" height="140">
             <circle
-              cx="60"
-              cy="60"
-              r="56"
+              cx="70"
+              cy="70"
+              r="66"
               stroke="hsl(var(--emergency-glow))"
-              strokeWidth="4"
+              strokeWidth="3"
               fill="none"
-              className="opacity-30"
+              className="opacity-20"
             />
             <circle
-              cx="60"
-              cy="60"
-              r="56"
+              cx="70"
+              cy="70"
+              r="66"
               stroke="hsl(var(--emergency-glow))"
-              strokeWidth="4"
+              strokeWidth="3"
               fill="none"
-              strokeDasharray={`${2 * Math.PI * 56}`}
-              strokeDashoffset={`${2 * Math.PI * 56 * (1 - progressWidth / 100)}`}
-              className="transition-all duration-75 drop-shadow-lg"
+              strokeDasharray={`${2 * Math.PI * 66}`}
+              strokeDashoffset={`${2 * Math.PI * 66 * (1 - progressWidth / 100)}`}
+              className="transition-all duration-75"
               style={{
-                filter: isPressed ? 'drop-shadow(0 0 8px hsl(var(--emergency-glow)))' : 'none'
+                filter: isPressed ? 'drop-shadow(0 0 12px hsl(var(--emergency-glow)))' : 'none'
               }}
             />
           </svg>
@@ -184,18 +191,19 @@ const PanicButton = () => {
         {/* Main Button */}
         <Button
           className={`
-            w-28 h-28 rounded-full transition-all duration-200
-            bg-emergency hover:bg-emergency-glow text-emergency-foreground
-            shadow-lg hover:shadow-xl active:scale-95
+            w-32 h-32 rounded-full transition-all duration-300
+            text-emergency-foreground font-display font-bold
             flex flex-col items-center justify-center gap-1
-            ${isPressed ? 'scale-105 shadow-2xl' : ''}
+            border-4 border-white/20
+            ${isPressed ? 'scale-110 shadow-2xl animate-pulse-glow' : 'hover:scale-105'}
             ${isLoading ? 'animate-pulse' : ''}
           `}
           style={{
             background: 'var(--gradient-emergency)',
             boxShadow: isPressed 
-              ? 'var(--shadow-emergency), 0 0 20px hsl(var(--emergency-glow) / 0.6)' 
-              : 'var(--shadow-emergency)',
+              ? 'var(--shadow-emergency-glow), inset 0 0 20px rgba(255,255,255,0.1)' 
+              : 'var(--shadow-emergency), inset 0 0 10px rgba(255,255,255,0.1)',
+            transition: 'var(--transition-spring)',
           }}
           disabled={isLoading}
           onMouseDown={handlePressStart}
@@ -205,11 +213,11 @@ const PanicButton = () => {
           onTouchEnd={handlePressEnd}
         >
           {isLoading ? (
-            <Zap className="w-8 h-8 animate-spin" />
+            <Zap className="w-10 h-10 animate-spin drop-shadow-sm" />
           ) : (
             <>
-              <AlertCircle className="w-6 h-6" />
-              <span className="text-lg font-bold">SOS</span>
+              <AlertCircle className="w-8 h-8 drop-shadow-sm" />
+              <span className="text-xl font-bold tracking-wide drop-shadow-sm">SOS</span>
             </>
           )}
         </Button>
@@ -217,10 +225,16 @@ const PanicButton = () => {
 
       {/* Status Message */}
       {isPressed && !isLoading && (
-        <div className="mt-4 text-center">
-          <p className="text-sm text-emergency font-medium animate-pulse">
+        <div className="mt-6 text-center animate-fade-in">
+          <p className="text-base text-emergency font-semibold animate-pulse">
             Hold to activate emergency alert...
           </p>
+          <div className="mt-2 w-32 h-1 bg-emergency/20 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-emergency rounded-full transition-all duration-75"
+              style={{ width: `${progressWidth}%` }}
+            />
+          </div>
         </div>
       )}
     </div>
